@@ -1,0 +1,30 @@
+Challenge 6
+Write a function delay that accepts a callback as the first parameter and the wait in milliseconds before allowing the callback to be invoked as the second parameter. Any additional arguments after wait are provided to func when it is invoked. HINT: research setTimeout();
+
+
+function delay(func, wait, ...args) {
+  function delayRun() {
+    func(...args);
+  }
+  setTimeout(delayRun, wait);
+}
+
+
+//another way using this 
+
+function delay(func, wait) {
+  function callAfterDelay() {
+    this.setTimeout(func, wait);
+  }
+
+  return callAfterDelay;
+}
+
+
+
+sing rest parameters to make sure that all the following parameters are passed on to the inner function.
+
+Secondly, notice that the function return technically doesn't return anything. It simply uses the 
+setTimeout() which is a API provides by the browser/node.js. 
+setTimeout  invokes the delayRun function, with a delay of wait milliseconds. 
+The closure inside delayRun we still have access to all the args that were passed to delay.
