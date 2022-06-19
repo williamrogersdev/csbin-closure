@@ -1,0 +1,33 @@
+Challenge 7
+Write a function rollCall that accepts an array of names and returns a function. The first time the returned function is invoked, it should log the first name to the console. The second time it is invoked, it should log the second name to the console, and so on, until all names have been called. Once all names have been called, it should log 'Everyone accounted for'.
+
+
+
+
+// CHALLENGE 7
+function rollCall(names) {
+    let count = 0;
+
+    return function() {
+        if (count < names.length) {
+            console.log(names[count]);
+            count++;
+        } else {
+            console.log("Everyone accounted for");
+        }
+    }
+}
+
+// /*** Uncomment these to check your work! ***/
+const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
+rollCaller() // => should log 'Victoria'
+rollCaller() // => should log 'Juan'
+rollCaller() // => should log 'Ruth'
+rollCaller() // => should log 'Everyone accounted for'
+
+
+Similar to problem 5, in that we need to output different things based on how many times the function has been called. 
+So immediately you should think, we need a counter var, 
+this counter needs to be in the outside scope. 
+After that it's pretty simple, our function receives an array 
+We just need to console.log a different element of that array based on how many times our function has been called. 
