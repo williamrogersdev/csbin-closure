@@ -14,3 +14,6 @@ function after(count, callback) {
   }
   
   return innerClosure;
+
+
+We can set a counter in the outside scope, using which we can determine how many times our function has been called.
