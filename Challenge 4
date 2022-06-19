@@ -1,3 +1,66 @@
 Challenge 4
 Write a function once that accepts a callback as input and returns a function. When the returned function is called the first time, it should call the callback and return that output. 
 If it is called any additional times, instead of calling the callback again it will simply return the output value from the first time it was called.
+
+
+function once(callback) {
+  //create car to store amount of times called
+  //output to store result of running the inner function once
+  let numOfTimesCalled = 0;
+  let output;
+  
+  //create closure function that will only run once 
+  
+  function closureFunc (...args) {
+    if (numOfTimesCalled <= 0) {
+      output = callback(...args)
+      numOfTimesCalled++
+    }
+    return output
+  }
+return closureFunc
+}
+
+// function once(func) {
+//   let result = 0;
+//   let counter = 0;
+//   function returnFunc(input) {
+//     counter++;
+//     if (counter > 1) {
+//       return result;
+//     } else {
+//       result = func(input);
+//     	return result;
+//     }
+//   }
+  
+//   return returnFunc;
+// }
+
+// function once(func) {
+//   let counter = 0;
+//   let res = undefined;
+//   function runOnce(...num) {
+//     if (counter === 0) {
+//       res = func(...num);
+//       counter++;
+//     }
+
+//     return res;
+//   }
+//   return runOnce;
+// }
+
+// /*** Uncomment these to check your work! ***/
+const onceFunc = once(addByTwo);
+console.log(onceFunc(4));  // => should log 6
+console.log(onceFunc(10));  // => should log 6
+console.log(onceFunc(9001));  // => should log 6
+
+
+Explanation  
+//Had to try this one a couple times before realizing i had made mistake in an earlier problem which was effecting it 
+1. We use closure to give our functions a memory here. 
+By simply declaring a variable in the outside scope and then changing it in the inner func
+We track how many times the function has been called and then have different behaviour based on the number of times the inner function has been called. 
+This gives our functions a lot more flexibility 
